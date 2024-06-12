@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя Личная Веб-страница</title>
+    <meta name="description" content="Личная страница с ссылками на мои социальные сети и видео. Подписывайтесь и смотрите мой контент!">
+    <meta name="keywords" content="личная страница, социальные сети, видео, контент">
+    <meta name="author" content="Ваше Имя">
+    <style>
+        body {
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1, #fccb90, #a1c4fd, #c2e9fb);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #202124;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            position: relative;
+        }
+        .menu-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #1a73e8;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+            z-index: 1000;
+        }
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            z-index: 999;
+        }
+        .sidebar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 22px;
+            color: #202124;
+            display: block;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .sidebar a:hover {
+            background-color: #1a73e8;
+            color: #fff;
+        }
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+            color: #202124;
+            cursor: pointer;
+        }
+        header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin: 0;
+            font-weight: 300;
+            color: #1a73e8;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #1a73e8;
+            padding-bottom: 10px;
+            font-weight: 400;
+        }
+        .section p {
+            font-size: 1em;
+            line-height: 1.6;
+        }
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .social-links a {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            background-color: #1a73e8;
+            color: #fff;
+            text-decoration: none;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: center;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        .social-links a:hover {
+            background-color: #135aba;
+        }
+        .images {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .images img {
+            width: 200px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #1a73e8;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 50%;
+            z-index: 1000;
+            display: none;
+        }
+        .back-to-top:hover {
+            background-color: #135aba;
+        }
+        .back-to-home {
+            position: fixed;
+            bottom: 20px;
+            right: 80px;
+            background-color: #1a73e8;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 50%;
+            z-index: 1000;
+        }
+        .back-to-home:hover {
+            background-color: #135aba;
+        }
+        .feedback {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .feedback h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .feedback p {
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <button class="menu-btn" onclick="openNav()">☰ Меню</button>
+    <button class="back-to-top" onclick="scrollToTop()">⬆</button>
+    <button class="back-to-home" onclick="openSection('home')">⬅</button>
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">×</a>
+        <a href="javascript:void(0)" onclick="openSection('home')">Главная</a>
+        <a href="javascript:void(0)" onclick="openSection('bio')">Краткая биография</a>
+        <a href="javascript:void(0)" onclick="openSection('education')">Образование</a>
+        <a href="javascript:void(0)" onclick="openSection('work')">Работа</a>
+        <a href="javascript:void(0)" onclick="openSection('goals')">Цели на будущее</a>
+        <a href="javascript:void(0)" onclick="openSection('fig')">Инжир</a>
+    </div>
+    <div id="home" class="container section">
+        <header>
+            <h1>Рад вас видеть на этом сайте</h1>
+        </header>
+        <div class="images">
+            <img src="https://sun9-69.userapi.com/impg/id1VIWM6UAat7U8UGblMRK1794ZiOjAdSIXbAg/IkSDytKvkeQ.jpg?size=960x1280&quality=95&sign=c59d8aa9e2654d9a5c0fb68a1d6bbcd3&type=album" alt="Image 1">
+            <img src="https://sun9-27.userapi.com/impg/fCs6Zr2K_igD1OM0Q1TTaO8tRZrMBT1YSMociQ/aEjc5zNh6Nw.jpg?size=807x538&quality=95&sign=52cde9640da9a9b6ecc47f292d6b913b&c_uniq_tag=yUjE-xROWXwILneruzkiFS9XkNdXSg-8-1vhjcZY3jY&type=album" alt="Image 2">
+            <img src="https://sun9-67.userapi.com/impg/b2ButtJlv8nbeQnVtc4DX_6HyOsaiXcmdADpLQ/_DJDwWlvYc8.jpg?size=1200x1200&quality=96&sign=3f248f3d7fc815d73722d5bdb05021f0&type=album" alt="Image 3">
+        </div>
+    </div>
+    
+    <div id="bio" class="container section" style="display:none;">
+        <header>
+            <h1>Краткая биография</h1>
+        </header>
+        <p>Привет!Привет! Меня зовут Энрико, и я увлечен созданием контента, который приносит радость и вдохновение людям по всему миру. В своих видео и постах я делюсь своими интересами, хобби и мыслями. Я верю в силу креативности и положительной энергии, и стремлюсь передать это через свои работы. Подписывайтесь на мои каналы, чтобы быть в курсе всех новинок и наслаждаться уникальным контентом, который я создаю специально для вас!</p>
+    </div>
+    
+    <div id="education" class="container section" style="display:none;">
+        <header>
+            <h1>Образование</h1>
+        </header>
+        <p>В 2011 году поступил в общеобразовательную школу В Риге (Латвия) - "Rigas92. Vidusskola", где освоил образовательную программу первого класса. Затем, продолжил обучение в Псковском Педагогрическом Комплексе (школа №26) в Пскове (Россия). В 2020 году получил аттестат об основном общем образовании. В том же году поступил на первый курс в Колледж при Псковском Государственном Университете на специальность: "09.02.03. Программирование в компьютерных системах"</p>
+    </div>
+    
+    <div id="work" class="container section" style="display:none;">
+        <header>
+            <h1>Работа</h1>
+        </header>
+        <p>С 2022 года был официально трудосустроен в организацию ООО"ДОБРЫЕ БОБРЫ" на должность помошника бухгалтера. Так же, по совместительсву, работал в той же компании поваром горячего цеха в ресторане "Инжир"</p>
+    </div>
+    
+    <div id="goals" class="container section" style="display:none;">
+        <header>
+            <h1>Цели на будущее</h1>
+        </header>
+        <p>После завершения цикла образования, благодаря которому удалось стать грамотным квалифицированным специалистом, настает этам реализации знаний, умений, навыков и компетенций в действии. Это говорит о том, что основной целью открытия своего дела является привлечение финансовых средств.</p>
+    </div>
+    
+    <div id="fig" class="container section" style="display:none;">
+        <header>
+            <h1>Инжир</h1>
+        </header>
+        <p>Добро пожаловать в ресторан "Инжир". Здесь вы найдете лучшие блюда, приготовленные с душой и страстью. Наша команда профессионалов стремится создать незабываемый кулинарный опыт для каждого гостя. Приходите и насладитесь атмосферой и вкусной едой!</p>
+        <div class="feedback">
+            <h3>Отзывы наших клиентов:</h3>
+            <p>Анна: Отличная еда и приятная атмосфера. Буду приходить снова и снова!</p>
+            <p>Иван: Самый вкусный плов, который я когда-либо пробовал!</p>
+            <p>Мария: Обслуживание на высшем уровне, а блюда просто восхитительны!</p>
+            <p>Алексей: Очень уютное место, рекомендую всем своим друзьям.</p>
+            <p>Екатерина: Великолепные десерты, особенно торт "Наполеон".</p>
+            <p>Дмитрий: Быстрое обслуживание и очень вкусная еда. 5 из 5!</p>
+            <p>Наталья: Шикарное место для семейного ужина.</p>
+            <p>Сергей: Лучший ресторан в городе. Всегда рад сюда возвращаться.</p>
+            <p>Ольга: Приятная музыка и отличная кухня. Рекомендую!</п>
+            <п>Кирилл: Великолепный интерьер и вкусная еда. Обязательно приду еще!</п>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Подписывайтесь на мои каналы</h2>
+        <div class="social-links">
+            <a href="https://www.twitch.tv/3n4ico" target="_blank">Мой Twitch</a>
+            <a href="https://vk.com/flowfaertree" target="_blank">Мой ВКонтакте</a>
+            <a href="https://t.me/+uPn51LCIxdkxMjBi" target="_blank">Мой Telegram</a>
+        </div>
+    </div>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+        }
+
+        function openSection(sectionId) {
+            var sections = document.querySelectorAll('.container.section');
+            sections.forEach(function(section) {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+            closeNav();
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        window.onscroll = function() {
+            var backToTopButton = document.querySelector('.back-to-top');
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        };
+    </script>
+</body>
+</html>
